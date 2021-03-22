@@ -10,10 +10,10 @@ micronaut:
             - https://creativeyann17.github.io
 datasources:
   default:
-    url: ${JDBC_URL}
-    driverClassName: ${JDBC_DRIVER}
-    username: ${JDBC_USER}
-    password: ${JDBC_PASSWORD}
+    url: ${JDBC_DATABASE_URL}
+    driverClassName: org.postgresql.Driver
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
 jpa:
   default:
     entity-scan:
