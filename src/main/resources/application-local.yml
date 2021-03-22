@@ -1,0 +1,27 @@
+micronaut:
+  application:
+    name: creativeyann17-github-api
+  server:
+    cors:
+      enabled: true
+      configurations:
+        all:
+          allowedOrigins:
+            - http://localhost:3000
+datasources:
+  default:
+    url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+    dialect: H2
+jpa:
+  default:
+    properties:
+      hibernate:
+        show_sql: true
+        hbm2ddl:
+          auto: update
+logger:
+  levels:
+    com.creativeyann17.github.api: DEBUG

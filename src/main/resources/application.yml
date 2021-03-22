@@ -1,0 +1,33 @@
+micronaut:
+  application:
+    name: creativeyann17-github-api
+  server:
+    cors:
+      enabled: true
+      configurations:
+        all:
+          allowedOrigins:
+            - https://creativeyann17.github.io
+datasources:
+  default:
+    url: ${JDBC_URL}
+    driverClassName: ${JDBC_DRIVER}
+    username: ${JDBC_USER}
+    password: ${JDBC_PASSWORD}
+jpa:
+  default:
+    entity-scan:
+      packages: com.creativeyann17.nomad.api.domain
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+endpoints:
+  all:
+    enabled: false
+    sensitive: false
+  health:
+    enabled: true
+logger:
+  levels:
+    com.creativeyann17.github.api: INFO
