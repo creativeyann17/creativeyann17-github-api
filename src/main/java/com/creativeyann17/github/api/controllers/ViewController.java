@@ -1,6 +1,7 @@
 package com.creativeyann17.github.api.controllers;
 
 import com.creativeyann17.github.api.domain.View;
+import com.creativeyann17.github.api.mappers.ViewMapper;
 import com.creativeyann17.github.api.models.ArticleViewMessage;
 import com.creativeyann17.github.api.models.ViewResponse;
 import com.creativeyann17.github.api.repositories.ViewRepository;
@@ -14,31 +15,33 @@ import io.micronaut.websocket.WebSocketBroadcaster;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-@Controller("/views")
+@Controller("/views/{article}")
 public class ViewController {
 
   @Inject
   private ViewRepository viewRepository;
 
   @Inject
+  private ViewMapper viewMapper;
+
+  @Inject
   private WebSocketBroadcaster broadcaster;
 
-  @Get("/{article}")
+  @Get
   public HttpResponse<ViewResponse> getViewArticle(@PathVariable String article) {
-    final View view = viewRepository.findByArticle(article).orElse(View.builder().article(article).count(0).build());
-    final ViewResponse response = new ViewResponse(view.getArticle(), view.getCount());
-    return HttpResponse.ok(response);
+    final View view = viewRepository.findByArticle(article).orElse(viewMapper.emptyView(article));
+    final ViewResponse viewResponse = viewMapper.mapToViewResponse(view);
+    return HttpResponse.ok(viewResponse);
   }
 
-  @Post("/{article}")
+  @Post
   @Transactional
   public HttpResponse<ViewResponse> postViewArticle(@PathVariable String article) {
-    final View view = viewRepository.findByArticle(article).orElse(View.builder().article(article).count(0).build());
-    view.setCount(view.getCount() + 1);
-    viewRepository.save(view);
-    final ViewResponse response = new ViewResponse(view.getArticle(), view.getCount());
+    final View view = viewRepository.findByArticle(article).orElse(viewMapper.emptyView(article));
+    viewRepository.save(viewMapper.incCountOfViews(view));
+    final ViewResponse viewResponse = viewMapper.mapToViewResponse(view);
     broadcaster.broadcastAsync(new ArticleViewMessage(view.getArticle(), view.getCount()));
-    return HttpResponse.ok(response);
-
+    return HttpResponse.ok(viewResponse);
   }
+
 }
