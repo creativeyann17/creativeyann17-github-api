@@ -15,13 +15,6 @@ datasources:
     username: sa
     password: ""
     dialect: H2
-jpa:
-  default:
-    properties:
-      hibernate:
-        show_sql: true
-        hbm2ddl:
-          auto: update
 logger:
   levels:
     com.creativeyann17.github.api: DEBUG

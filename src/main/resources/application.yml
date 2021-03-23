@@ -14,12 +14,14 @@ datasources:
     driverClassName: org.postgresql.Driver
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
+    dialect: POSTGRES
 jpa:
   default:
     entity-scan:
-      packages: com.creativeyann17.nomad.api.domain
+      packages: com.creativeyann17.github.api.domain
     properties:
       hibernate:
+        show_sql: true
         hbm2ddl:
           auto: update
 endpoints:
