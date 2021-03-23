@@ -1,0 +1,1 @@
+web: java -jar target/creativeyann17-github-api-0.1.jar
