@@ -33,3 +33,10 @@ endpoints:
 logger:
   levels:
     com.creativeyann17.github.api: INFO
+graphql:
+  enabled: true
+  path: /graphql
+  graphql-ws:
+    enabled: false
+  graphiql:
+    enabled: false

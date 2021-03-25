@@ -1,0 +1,17 @@
+schema {
+    query: QueryRoot
+    mutation: MutationRoot
+}
+
+type QueryRoot {
+    getViewArticle(article: String!): View!
+}
+
+type MutationRoot {
+    postViewArticle (article: String!): View!
+}
+
+type View {
+ article: String!
+ count: Int!
+}

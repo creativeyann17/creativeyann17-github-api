@@ -24,3 +24,6 @@ jpa:
 logger:
   levels:
     com.creativeyann17.github.api: DEBUG
+graphql:
+  graphiql:
+    enabled: true
