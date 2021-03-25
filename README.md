@@ -9,3 +9,4 @@ Technologies used:
 - Netty
 - Websocket
 - JPA
+- GraphQl
