@@ -4,14 +4,21 @@ schema {
 }
 
 type QueryRoot {
+    getLikeArticle(article: String!): Like!
     getViewArticle(article: String!): View!
 }
 
 type MutationRoot {
+    postLikeArticle (article: String!): Like!
     postViewArticle (article: String!): View!
 }
 
 type View {
+ article: String!
+ count: Int!
+}
+
+type Like {
  article: String!
  count: Int!
 }

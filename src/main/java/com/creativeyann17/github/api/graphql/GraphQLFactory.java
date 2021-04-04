@@ -19,7 +19,9 @@ public class GraphQLFactory {
 
   @Bean
   @Singleton
-  public GraphQL graphQL(ResourceResolver resourceResolver, GetViewDataFetcher getViewDataFetcher, PostViewDataFetcher postViewDataFetcher) {
+  public GraphQL graphQL(ResourceResolver resourceResolver,
+                         GetLikeDataFetcher getLikeDataFetcher, PostLikeDataFetcher postLikeDataFetcher,
+                         GetViewDataFetcher getViewDataFetcher, PostViewDataFetcher postViewDataFetcher) {
 
     SchemaParser schemaParser = new SchemaParser();
     SchemaGenerator schemaGenerator = new SchemaGenerator();
@@ -32,8 +34,10 @@ public class GraphQLFactory {
     // Create the runtime wiring.
     RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring()
         .type("QueryRoot", typeWiring -> typeWiring
+            .dataFetcher("getLikeArticle", getLikeDataFetcher)
             .dataFetcher("getViewArticle", getViewDataFetcher))
         .type("MutationRoot", typeWiring -> typeWiring
+            .dataFetcher("postLikeArticle", postLikeDataFetcher)
             .dataFetcher("postViewArticle", postViewDataFetcher))
         .build();
 

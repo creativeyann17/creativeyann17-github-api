@@ -11,13 +11,13 @@ import javax.persistence.*;
 @Introspected
 @Entity
 @Table(
-    name = "views",
-    indexes = {@Index(name = "views_article_index", columnList = "article", unique = true)})
+    name = "likes",
+    indexes = {@Index(name = "likes_article_index", columnList = "article", unique = true)})
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class View {
+public class Like {
   @Id
   @GeneratedValue
   private long id;

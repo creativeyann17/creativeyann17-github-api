@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 public abstract class WebSocketMessage {
 
   public enum Type {
-    ARTICLE_VIEWS
+    ARTICLE_VIEWS,
+    ARTICLE_LIKES
   }
 
   protected Type type;

@@ -25,5 +25,7 @@ logger:
   levels:
     com.creativeyann17.github.api: DEBUG
 graphql:
+  graphql-ws:
+    enabled: true
   graphiql:
     enabled: true
